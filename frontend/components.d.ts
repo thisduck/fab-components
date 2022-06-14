@@ -7,6 +7,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     MdiAccountBox: typeof import('~icons/mdi/account-box')['default']
+    RandomForm: typeof import('./src/components/RandomForm.vue')['default']
   }
 }
 

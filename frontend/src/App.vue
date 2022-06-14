@@ -1,16 +1,24 @@
 <script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue';
+// empty
+
+async function handleSubmit(event) {
+  // console.log(event);
+  let count = 1;
+
+  while (count < 10) {
+    console.log(count);
+    await new Promise(resolve => setTimeout(resolve, 500));
+    count += 1;
+  }
+}
 </script>
 
 <template>
   <div class="mt-12 text-center text-slate-800">
-    <div class="flex justify-center items-center">
-      <MdiAccountBox class="w-12 h-12 text-green-500" />
-    </div>
-
-    <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+    <RandomForm class="space-x-4" @submit="handleSubmit">
+      <input name="companyName" class="rounded-md border border-gray-600 py-2 px-3" />
+      <button class="rounded-md border border-gray-600 py-2 px-3">Submit</button>
+    </RandomForm>
   </div>
 </template>
 
