@@ -15,17 +15,11 @@ async function handleSubmit(event) {
 
 <template>
   <div class="mt-12 text-center text-slate-800">
-    <RandomForm class="space-x-4" @submit="handleSubmit">
+    <RandomForm v-slot="{ isRunning }" class="space-x-4" @submit="handleSubmit">
+      <pre>{{ isRunning }}</pre>
       <input name="companyName" class="rounded-md border border-gray-600 py-2 px-3" />
-      <button class="rounded-md border border-gray-600 py-2 px-3">Submit</button>
+      <RandomButton>Submit</RandomButton>
+      <RandomButton disabled type="button">Cancel</RandomButton>
     </RandomForm>
   </div>
 </template>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-</style>
