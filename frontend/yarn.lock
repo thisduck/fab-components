@@ -408,6 +408,11 @@ browserslist@^4.20.3:
     node-releases "^2.0.5"
     picocolors "^1.0.0"
 
+caf@13.1.1:
+  version "13.1.1"
+  resolved "https://registry.yarnpkg.com/caf/-/caf-13.1.1.tgz#c43061a11f01ca642a7b535d075026ce4f13456c"
+  integrity sha512-Xc9exUN5aEnEzjZX+njng7M5TLIJ0dq898cb5cjqOKn+bLGdEPIEXdtD4GWM8eiSO7/a9sIIGQS2AIzhvWD2Bw==
+
 callsites@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/callsites/-/callsites-3.1.0.tgz#b3630abd8943432f54b3f0519238e33cd7df2f73"
@@ -1636,6 +1641,13 @@ vite@^2.9.9:
     rollup "^2.59.0"
   optionalDependencies:
     fsevents "~2.3.2"
+
+vue-concurrency@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/vue-concurrency/-/vue-concurrency-2.3.0.tgz#8a0623bed6da9ad9f3fb2fa5edca35846420d860"
+  integrity sha512-7Tv+VqLgayeHHCgIARpCamm7DDQafTIjGkHfC6jMdAlfrsgQpPrWdTucBGjy/NsUA2XfWH0/SUXHb/BZNEva9Q==
+  dependencies:
+    caf "13.1.1"
 
 vue-demi@*:
   version "0.13.1"

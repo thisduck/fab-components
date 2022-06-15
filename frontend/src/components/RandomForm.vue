@@ -1,15 +1,24 @@
 <script setup lang="ts">
-// empty
+import { useTask } from 'vue-concurrency';
+import { useAttrs } from 'vue';
 
-const emit = defineEmits(['submit']);
+const attrs = useAttrs();
 
-function submit(event) {
-  emit('submit', event);
-}
+const { onSubmit, ...restOfAttrs } = attrs;
+
+const submitTask = useTask(function* (_signal, event: Event) {
+  yield (onSubmit as (event: Event) => void)(event);
+}).drop();
+</script>
+
+<script lang="ts">
+export default {
+  inheritAttrs: false,
+};
 </script>
 
 <template>
-  <form class="space-x-4" @submit.prevent="submit">
+  <form v-bind="restOfAttrs" @submit.prevent="event => submitTask.perform(event)">
     <slot></slot>
   </form>
 </template>
