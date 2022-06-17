@@ -18,7 +18,9 @@ async function handleSubmit(event) {
     <RandomForm class="space-x-4" @submit="handleSubmit">
       <input name="companyName" class="py-2 px-3 rounded-md border border-gray-600" />
       <RandomButton>Submit</RandomButton>
-      <RandomButton disabled type="button">Cancel</RandomButton>
+      <RandomButton size="xs" type="button">Xtra-Small</RandomButton>
+      <RandomButton size="sm" type="button">Small</RandomButton>
+      <RandomButton size="base" type="button">Base</RandomButton>
     </RandomForm>
   </div>
 </template>

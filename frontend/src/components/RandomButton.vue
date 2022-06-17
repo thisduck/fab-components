@@ -4,9 +4,10 @@ import { inject, defineProps, computed, Ref } from 'vue';
 const props = defineProps<{
   type?: 'submit' | 'button' | 'reset';
   disabled?: boolean;
+  size?: 'xs' | 'sm' | 'base';
 }>();
 
-const formIsRunning: Ref<boolean> = inject('formIsRunning');
+const formIsRunning: Ref<boolean> | undefined = inject('formIsRunning');
 
 const disabledValue = computed(() => {
   return props.disabled || isRunning.value;
@@ -17,7 +18,20 @@ const isSubmitType = computed(() => {
 });
 
 const isRunning = computed(() => {
-  return isSubmitType.value && formIsRunning.value;
+  return isSubmitType.value && formIsRunning?.value;
+});
+
+const size = computed(() => {
+  return props.size || 'base';
+});
+
+const buttonClasses = computed(() => {
+  const buttonSizes = {
+    xs: 'py-1 px-2 text-xs',
+    sm: 'py-1.5 px-2.5 text-sm',
+    base: 'py-2 px-3 text-base',
+  };
+  return [buttonSizes[size.value]];
 });
 </script>
 
@@ -25,10 +39,11 @@ const isRunning = computed(() => {
   <button
     :disabled="disabledValue"
     :type="props.type"
-    class="inline-flex items-center justify-center space-x-2 rounded-md border border-gray-600 bg-blue-700 py-2 px-3 text-gray-100 transition-all"
+    class="inline-flex items-center justify-center space-x-2 rounded-md bg-primary-700 text-gray-100 transition-all shadow-md hover:bg-primary-600 focus:ring-primary-400 focus:ring-offset-2 focus:ring-2"
+    :class="[{ running: isRunning }, buttonClasses]"
   >
     <span v-if="isRunning" class="inline-block">
-      <MdiLoading class="inline-block h-6 w-6 animate-spin text-red-600" />
+      <GgSpinner class="inline-block h-6 w-6 animate-spin text-gray-100" />
     </span>
     <span v-else class="inline-block"><slot></slot></span>
   </button>
@@ -36,6 +51,9 @@ const isRunning = computed(() => {
 
 <style scoped>
 button[disabled] {
-  @apply bg-gray-200 text-gray-800;
+  @apply opacity-50 cursor-not-allowed;
+}
+button[disabled].running {
+  @apply opacity-100;
 }
 </style>

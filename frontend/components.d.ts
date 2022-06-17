@@ -5,6 +5,7 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    GgSpinner: typeof import('~icons/gg/spinner')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     MdiAccountBox: typeof import('~icons/mdi/account-box')['default']
     MdiLoading: typeof import('~icons/mdi/loading')['default']
