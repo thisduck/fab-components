@@ -25,13 +25,11 @@ const width = ref(0);
 const buttonRef = ref();
 
 watch(isRunning, (newValue, oldValue) => {
-  console.log(buttonRef);
   if (!oldValue && newValue) {
     width.value = buttonRef.value.offsetWidth;
   } else {
     width.value = 0;
   }
-  console.log(newValue, oldValue);
 });
 
 const size = computed(() => {
