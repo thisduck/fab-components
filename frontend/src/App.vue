@@ -37,7 +37,7 @@ const schema = object({
         <FabInput :name="`location`" />
       </div>
       <div class="mb-4">
-        <FabSelect
+        <FabMultiSelect
           name="color"
           placeholder="Please select a color"
           :options="{
@@ -45,10 +45,11 @@ const schema = object({
             red: 'Red Things',
             green: 'Green Stuff',
           }"
+          mode="multiple"
         />
       </div>
       <div class="mb-4">
-        <FabSelect :name="`colors`" :options="['orange', 'green', 'red']" />
+        <FabMultiSelect :name="`colors`" :options="['orange', 'green', 'red']" mode="tags" />
       </div>
       <div class="mb-4">
         <FabCheckbox :name="`termsOfAgreement`" type="checkbox" :value="true">

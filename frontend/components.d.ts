@@ -11,6 +11,7 @@ declare module '@vue/runtime-core' {
     FabForm: typeof import('./src/components/FabForm.vue')['default']
     FabInput: typeof import('./src/components/FabInput.vue')['default']
     FabLabel: typeof import('./src/components/FabLabel.vue')['default']
+    FabMultiSelect: typeof import('./src/components/FabMultiSelect.vue')['default']
     FabSelect: typeof import('./src/components/FabSelect.vue')['default']
     FabToggle: typeof import('./src/components/FabToggle.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
