@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { FieldArray } from 'vee-validate';
+import { string, object, array } from 'yup';
 
 async function handleSubmit(values: any) {
   console.log(values);
@@ -13,30 +14,27 @@ async function handleSubmit(values: any) {
   }
 }
 
-function validateEmail(value: string) {
-  // if the field is empty
-  if (!value) {
-    return 'This field is required';
-  }
-  // if the field is not a valid email
-  const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-  if (!regex.test(value)) {
-    return 'This field must be a valid email';
-  }
-  // All is good
-  return true;
-}
+const validateEmail = string().email().required();
+const schema = object({
+  companies: array().of(
+    object({
+      setting: object({
+        companyName: validateEmail.label('Company Name'),
+      }),
+      location: string().required().label('Location'),
+    })
+  ),
+});
 </script>
 
 <template>
   <div class="mt-12 text-slate-800">
-    <RandomForm class="p-4" @submit="handleSubmit">
+    <RandomForm class="p-4" @submit="handleSubmit" :validation-schema="schema">
       <FieldArray v-slot="{ fields, push, remove }" name="companies">
         <div v-for="(field, index) of fields" :key="field.key" class="mb-4">
           <RandomInput
             label="false"
             :name="`companies[${index}].setting.companyName`"
-            :rules="validateEmail"
             help="The name of your company"
           />
 

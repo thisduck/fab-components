@@ -34,10 +34,11 @@ export default {
       :type="type || 'text'"
       :placeholder="placeholder"
       :validateOnBlur="false"
+      :validateOnChange="false"
       class="py-2 px-3 rounded-md border border-gray-600"
       v-bind="attrs"
     />
-    <ErrorMessage :name="name" class="mt-1 block text-error-600 text-sm" />
     <p v-if="help" class="mt-1 block text-gray-700 text-sm">{{ help }}</p>
+    <ErrorMessage :name="name" class="mt-1 block text-error-600 text-sm" />
   </div>
 </template>
