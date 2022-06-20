@@ -9,6 +9,7 @@ const props = defineProps<{
   help?: string;
   labelAfter?: boolean;
   inputWrapperClasses?: string;
+  onLabelClick?: () => void;
 }>();
 
 const labelValue = computed(() => {
@@ -24,7 +25,7 @@ export default {
 
 <template>
   <div class="mb-4">
-    <FabLabel v-if="props.label !== 'false' && !labelAfter" :for="name">
+    <FabLabel v-if="props.label !== 'false' && !labelAfter" :for="name" @click="onLabelClick">
       <slot v-if="$slots.label" name="label"></slot>
       <span v-else>
         {{ labelValue }}
@@ -32,7 +33,7 @@ export default {
     </FabLabel>
     <div :class="inputWrapperClasses">
       <slot name="default"></slot>
-      <FabLabel v-if="props.label !== 'false' && labelAfter" :for="name">
+      <FabLabel v-if="props.label !== 'false' && labelAfter" :for="name" @click="onLabelClick">
         <slot v-if="$slots.label" name="label"></slot>
         <span v-else>
           {{ labelValue }}

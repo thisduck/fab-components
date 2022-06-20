@@ -1,13 +1,7 @@
 <script setup lang="ts">
-const props = defineProps<{
+defineProps<{
   for: string;
 }>();
-</script>
-
-<script lang="ts">
-export default {
-  inheritAttrs: false,
-};
 </script>
 
 <template>

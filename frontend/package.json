@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@types/yup": "^0.29.14",
+    "@vueform/toggle": "^2.0.2",
     "@vueuse/core": "^8.6.0",
     "lodash": "^4.17.21",
     "vee-validate": "^4.5.11",
