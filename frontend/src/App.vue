@@ -37,12 +37,13 @@ const schema = object({
         <FabInput :name="`location`" />
       </div>
       <div class="mb-4">
-        <FabCheckbox
-          :name="`termsOfAgreement`"
-          type="checkbox"
-          :value="true"
-          label="Please carefully read over all the terms of agreement, and accept or you will be held accountable. lollz."
-        />
+        <FabCheckbox :name="`termsOfAgreement`" type="checkbox" :value="true">
+          <template #label>
+            Please
+            <em>carefully</em>
+            read over all the terms of agreement, and accept or you will be held accountable. lollz.
+          </template>
+        </FabCheckbox>
       </div>
       <FieldArray v-slot="{ fields, push, remove }" name="companies">
         <div v-for="(field, index) of fields" :key="field.key" class="mb-4">

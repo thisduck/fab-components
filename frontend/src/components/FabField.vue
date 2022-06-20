@@ -24,14 +24,20 @@ export default {
 
 <template>
   <div class="mb-4">
-    <label v-if="props.label !== 'false' && !labelAfter" :for="name" class="block text-sm mb-1">
-      {{ labelValue }}
-    </label>
+    <FabLabel v-if="props.label !== 'false' && !labelAfter" :for="name">
+      <slot v-if="$slots.label" name="label"></slot>
+      <span v-else>
+        {{ labelValue }}
+      </span>
+    </FabLabel>
     <div :class="inputWrapperClasses">
       <slot name="default"></slot>
-      <label v-if="props.label !== 'false' && labelAfter" :for="name" class="block text-sm mb-1">
-        {{ labelValue }}
-      </label>
+      <FabLabel v-if="props.label !== 'false' && labelAfter" :for="name">
+        <slot v-if="$slots.label" name="label"></slot>
+        <span v-else>
+          {{ labelValue }}
+        </span>
+      </FabLabel>
     </div>
     <p v-if="help" class="mt-1 block text-gray-700 text-sm">{{ help }}</p>
     <ErrorMessage :name="name" class="mt-1 block text-error-600 text-sm" />

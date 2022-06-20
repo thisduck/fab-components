@@ -31,5 +31,8 @@ export default {
       class="py-2 px-3 rounded-md border border-gray-600"
       v-bind="attrs"
     />
+    <template v-if="$slots.label" #label>
+      <slot name="label"></slot>
+    </template>
   </FabField>
 </template>

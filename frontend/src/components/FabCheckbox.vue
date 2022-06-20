@@ -34,5 +34,8 @@ export default {
       class="h-5 w-5 rounded-md border border-gray-600 mt-px"
       v-bind="attrs"
     />
+    <template v-if="$slots.label" #label>
+      <slot name="label"></slot>
+    </template>
   </FabField>
 </template>
