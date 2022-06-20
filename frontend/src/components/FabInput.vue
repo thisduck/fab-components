@@ -28,7 +28,7 @@ export default {
       :placeholder="placeholder"
       :validateOnBlur="false"
       :validateOnChange="false"
-      class="py-2 px-3 rounded-md border border-gray-600"
+      class="py-2 px-3 rounded-md border border-gray-600 w-full"
       v-bind="attrs"
     />
     <template v-if="$slots.label" #label>

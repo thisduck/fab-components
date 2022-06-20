@@ -16,7 +16,7 @@ async function handleSubmit(values: any) {
 
 const validateEmail = string().email().required();
 const schema = object({
-  termsOfAgreement: boolean().required().label('Terms Of Agreement'),
+  termsOfAgreement: boolean().label('Terms Of Agreement'),
   companies: array().of(
     object({
       setting: object({
@@ -35,6 +35,20 @@ const schema = object({
 
       <div class="mb-4">
         <FabInput :name="`location`" />
+      </div>
+      <div class="mb-4">
+        <FabSelect
+          name="color"
+          placeholder="Please select a color"
+          :options="{
+            orange: 'Orange',
+            red: 'Red Things',
+            green: 'Green Stuff',
+          }"
+        />
+      </div>
+      <div class="mb-4">
+        <FabSelect :name="`colors`" :options="['orange', 'green', 'red']" />
       </div>
       <div class="mb-4">
         <FabCheckbox :name="`termsOfAgreement`" type="checkbox" :value="true">
