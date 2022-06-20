@@ -6,6 +6,7 @@ import '@vue/runtime-core'
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     FabButton: typeof import('./src/components/FabButton.vue')['default']
+    FabField: typeof import('./src/components/FabField.vue')['default']
     FabForm: typeof import('./src/components/FabForm.vue')['default']
     FabInput: typeof import('./src/components/FabInput.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']

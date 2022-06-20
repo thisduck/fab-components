@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { Field, ErrorMessage } from 'vee-validate';
-import { useAttrs, computed } from 'vue';
-import startCase from 'lodash/startCase';
+import { Field } from 'vee-validate';
+import { useAttrs } from 'vue';
 
-const props = defineProps<{
+defineProps<{
   name: string;
   type?: string;
   placeholder?: string;
@@ -11,9 +10,6 @@ const props = defineProps<{
   help?: string;
 }>();
 
-const labelValue = computed(() => {
-  return props.label ?? startCase(props.name.split('.').reverse()[0]);
-});
 const attrs = useAttrs();
 </script>
 
@@ -24,10 +20,7 @@ export default {
 </script>
 
 <template>
-  <div class="mb-4">
-    <label v-if="props.label !== 'false'" :for="name" class="block text-sm mb-1">
-      {{ labelValue }}
-    </label>
+  <FabField :label="label" :help="help" :name="name">
     <Field
       :id="name"
       :name="name"
@@ -38,7 +31,5 @@ export default {
       class="py-2 px-3 rounded-md border border-gray-600"
       v-bind="attrs"
     />
-    <p v-if="help" class="mt-1 block text-gray-700 text-sm">{{ help }}</p>
-    <ErrorMessage :name="name" class="mt-1 block text-error-600 text-sm" />
-  </div>
+  </FabField>
 </template>

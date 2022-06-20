@@ -30,10 +30,13 @@ const schema = object({
 <template>
   <div class="mt-12 text-slate-800">
     <FabForm class="p-4" @submit="handleSubmit" :validation-schema="schema">
-      <FabInput label="false" :name="`firstName`" help="Your first name" />
+      <FabInput :name="`firstName`" help="Your first name" />
 
       <div class="mb-4">
         <FabInput :name="`location`" />
+      </div>
+      <div class="mb-4">
+        <FabInput :name="`termsOfAgreement`" type="checkbox" />
       </div>
       <FieldArray v-slot="{ fields, push, remove }" name="companies">
         <div v-for="(field, index) of fields" :key="field.key" class="mb-4">
