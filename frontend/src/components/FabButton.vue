@@ -58,7 +58,7 @@ const buttonClasses = computed(() => {
     :style="width ? `width: ${width}px` : ''"
   >
     <span v-if="isRunning" class="inline-block">
-      <GgSpinner class="inline-block h-6 w-6 animate-spin text-gray-100" />
+      <IconGgSpinner class="inline-block h-6 w-6 animate-spin text-gray-100" />
     </span>
     <span v-else class="inline-block"><slot></slot></span>
   </button>

@@ -5,11 +5,11 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    GgSpinner: typeof import('~icons/gg/spinner')['default']
+    FabButton: typeof import('./src/components/FabButton.vue')['default']
+    FabForm: typeof import('./src/components/FabForm.vue')['default']
+    FabInput: typeof import('./src/components/FabInput.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
-    RandomButton: typeof import('./src/components/RandomButton.vue')['default']
-    RandomForm: typeof import('./src/components/RandomForm.vue')['default']
-    RandomInput: typeof import('./src/components/RandomInput.vue')['default']
+    IconGgSpinner: typeof import('~icons/gg/spinner')['default']
   }
 }
 

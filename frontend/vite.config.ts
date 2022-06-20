@@ -11,7 +11,7 @@ export default defineConfig({
     Components({
       resolvers: [
         IconsResolver({
-          prefix: false,
+          prefix: 'icon',
         }),
       ],
     }),

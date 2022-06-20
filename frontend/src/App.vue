@@ -29,32 +29,37 @@ const schema = object({
 
 <template>
   <div class="mt-12 text-slate-800">
-    <RandomForm class="p-4" @submit="handleSubmit" :validation-schema="schema">
+    <FabForm class="p-4" @submit="handleSubmit" :validation-schema="schema">
+      <FabInput label="false" :name="`firstName`" help="Your first name" />
+
+      <div class="mb-4">
+        <FabInput :name="`location`" />
+      </div>
       <FieldArray v-slot="{ fields, push, remove }" name="companies">
         <div v-for="(field, index) of fields" :key="field.key" class="mb-4">
-          <RandomInput
+          <FabInput
             label="false"
             :name="`companies[${index}].setting.companyName`"
             help="The name of your company"
           />
 
           <div class="mb-4">
-            <RandomInput :name="`companies[${index}].location`" />
+            <FabInput :name="`companies[${index}].location`" />
           </div>
 
           <div>
-            <RandomButton size="xs" type="button" @click="remove(index)">- remove</RandomButton>
+            <FabButton size="xs" type="button" @click="remove(index)">- remove</FabButton>
           </div>
         </div>
-        <RandomButton size="xs" type="button" @click="push({})">+ Company</RandomButton>
+        <FabButton size="xs" type="button" @click="push({})">+ Company</FabButton>
       </FieldArray>
 
       <div class="pt-4 space-x-4">
-        <RandomButton>Submit</RandomButton>
-        <RandomButton size="xs" type="button">Xtra-Small</RandomButton>
-        <RandomButton size="sm" type="button">Small</RandomButton>
-        <RandomButton size="base" type="button">Base</RandomButton>
+        <FabButton>Submit</FabButton>
+        <FabButton size="xs" type="button">Xtra-Small</FabButton>
+        <FabButton size="sm" type="button">Small</FabButton>
+        <FabButton size="base" type="button">Base</FabButton>
       </div>
-    </RandomForm>
+    </FabForm>
   </div>
 </template>
