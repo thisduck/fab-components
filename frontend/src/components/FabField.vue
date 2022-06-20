@@ -7,6 +7,8 @@ const props = defineProps<{
   name: string;
   label?: string;
   help?: string;
+  labelAfter?: boolean;
+  inputWrapperClasses?: string;
 }>();
 
 const labelValue = computed(() => {
@@ -22,10 +24,15 @@ export default {
 
 <template>
   <div class="mb-4">
-    <label v-if="props.label !== 'false'" :for="name" class="block text-sm mb-1">
+    <label v-if="props.label !== 'false' && !labelAfter" :for="name" class="block text-sm mb-1">
       {{ labelValue }}
     </label>
-    <slot name="default"></slot>
+    <div :class="inputWrapperClasses">
+      <slot name="default"></slot>
+      <label v-if="props.label !== 'false' && labelAfter" :for="name" class="block text-sm mb-1">
+        {{ labelValue }}
+      </label>
+    </div>
     <p v-if="help" class="mt-1 block text-gray-700 text-sm">{{ help }}</p>
     <ErrorMessage :name="name" class="mt-1 block text-error-600 text-sm" />
   </div>

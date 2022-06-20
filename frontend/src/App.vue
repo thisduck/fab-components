@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { FieldArray } from 'vee-validate';
-import { string, object, array } from 'yup';
+import { string, object, array, boolean } from 'yup';
 
 async function handleSubmit(values: any) {
   console.log(values);
@@ -16,6 +16,7 @@ async function handleSubmit(values: any) {
 
 const validateEmail = string().email().required();
 const schema = object({
+  termsOfAgreement: boolean().required().label('Terms Of Agreement'),
   companies: array().of(
     object({
       setting: object({
@@ -29,14 +30,19 @@ const schema = object({
 
 <template>
   <div class="mt-12 text-slate-800">
-    <FabForm class="p-4" @submit="handleSubmit" :validation-schema="schema">
+    <FabForm class="p-4 w-1/3" @submit="handleSubmit" :validation-schema="schema">
       <FabInput :name="`firstName`" help="Your first name" />
 
       <div class="mb-4">
         <FabInput :name="`location`" />
       </div>
       <div class="mb-4">
-        <FabInput :name="`termsOfAgreement`" type="checkbox" />
+        <FabCheckbox
+          :name="`termsOfAgreement`"
+          type="checkbox"
+          :value="true"
+          label="Please carefully read over all the terms of agreement, and accept or you will be held accountable. lollz."
+        />
       </div>
       <FieldArray v-slot="{ fields, push, remove }" name="companies">
         <div v-for="(field, index) of fields" :key="field.key" class="mb-4">
