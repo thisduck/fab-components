@@ -5,6 +5,8 @@ const props = defineProps<{
   type?: 'submit' | 'button' | 'reset';
   disabled?: boolean;
   size?: 'xs' | 'sm' | 'base';
+  color?: 'primary' | 'secondary' | 'error';
+  variant?: 'default' | 'outline' | 'plain';
 }>();
 
 const formIsRunning: Ref<boolean> | undefined = inject('formIsRunning');
@@ -43,6 +45,24 @@ const buttonClasses = computed(() => {
     sm: 'py-1.5 px-2.5 text-sm',
     base: 'py-2 px-3 text-base',
   };
+
+  const colors: Record<string, string> = {
+    'primary-default':
+      'border border-primary-700 bg-primary-700 text-gray-100 focus:ring-primary-400 hover:bg-primary-600 ',
+    'secondary-default':
+      'border border-secondary-700 bg-secondary-700 text-gray-100 focus:ring-secondary-400 hover:bg-secondary-600 ',
+    'error-default':
+      'border border-error-700 bg-error-700 text-gray-100 focus:ring-error-400 hover:bg-error-600 ',
+    'primary-outline':
+      'border border-primary-700 text-primary-800 focus:ring-primary-400 hover:bg-primary-50',
+    'secondary-outline':
+      'border border-secondary-700 text-secondary-800 focus:ring-secondary-400 hover:bg-secondary-50',
+    'error-outline':
+      'border border-error-700 text-error-800 focus:ring-error-400 hover:bg-error-50',
+  };
+
+  const color = colors[`${props.color || 'primary'}-${props.variant || 'default'}`];
+  classes.push(color);
   classes.push(buttonSizes[size.value]);
   return classes;
 });
@@ -53,7 +73,7 @@ const buttonClasses = computed(() => {
     ref="buttonRef"
     :disabled="disabledValue"
     :type="props.type"
-    class="inline-flex items-center justify-center space-x-2 rounded-md bg-primary-700 text-gray-100 transition-all shadow-md hover:bg-primary-600 focus:ring-primary-400 focus:ring-offset-2 focus:ring-2"
+    class="inline-flex items-center justify-center space-x-2 rounded-md transition-all shadow-md focus:ring-offset-2 focus:ring-2"
     :class="[{ running: isRunning }, buttonClasses]"
     :style="width ? `width: ${width}px` : ''"
   >

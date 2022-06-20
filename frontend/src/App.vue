@@ -84,9 +84,9 @@ const schema = object({
 
       <div class="pt-4 space-x-4">
         <FabButton>Submit</FabButton>
+        <FabButton size="base" variant="outline" type="button">Submit</FabButton>
         <FabButton size="xs" type="button">Xtra-Small</FabButton>
-        <FabButton size="sm" type="button">Small</FabButton>
-        <FabButton size="base" type="button">Base</FabButton>
+        <FabButton size="sm" color="error" type="button">Small</FabButton>
       </div>
     </FabForm>
   </div>
