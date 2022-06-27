@@ -37,6 +37,17 @@ const schema = object({
         <FabInput :name="`location`" />
       </div>
       <div class="mb-4">
+        <FabSelect
+          name="oldColor"
+          placeholder="Please select a color"
+          :options="{
+            orange: 'Orange',
+            red: 'Red Things',
+            green: 'Green Stuff',
+          }"
+        />
+      </div>
+      <div class="mb-4">
         <FabMultiSelect
           name="color"
           placeholder="Please select a color"

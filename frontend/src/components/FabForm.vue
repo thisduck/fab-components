@@ -21,7 +21,7 @@ export default {
 </script>
 
 <template>
-  <Form v-bind="restOfAttrs" @submit="values => submitTask.perform(values)">
-    <slot :task="submitTask"></slot>
+  <Form v-bind="restOfAttrs" @submit="values => submitTask.perform(values)" v-slot="formParams">
+    <slot v-bind="formParams" :task="submitTask"></slot>
   </Form>
 </template>

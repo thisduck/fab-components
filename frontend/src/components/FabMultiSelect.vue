@@ -1,17 +1,12 @@
 <script setup lang="ts">
-import { Field } from 'vee-validate';
-import { useAttrs, ref, computed } from 'vue';
+import { ref, computed } from 'vue';
 import Multiselect from '@vueform/multiselect';
 
 const props = defineProps<{
-  name: string;
-  label?: string;
-  help?: string;
   options: Record<string, string> | string[];
   mode?: 'single' | 'multiple' | 'tags';
 }>();
 
-const attrs = useAttrs();
 const value = ref();
 
 const optionsValue = computed(() => {
@@ -27,24 +22,9 @@ const optionsValue = computed(() => {
 });
 </script>
 
-<script lang="ts">
-export default {
-  inheritAttrs: false,
-};
-</script>
-
 <template>
-  <FabField :label="label" :help="help" :name="name">
-    <Field
-      :id="name"
-      :name="name"
-      :validateOnBlur="false"
-      :validateOnChange="false"
-      class="h-5 w-5 rounded-md border border-gray-600 mt-px"
-      v-bind="attrs"
-      v-slot="{ field }"
-      v-model="value"
-    >
+  <FabField class="h-5 w-5 rounded-md border border-gray-600 mt-px" v-model="value">
+    <template #default="{ field }">
       <Multiselect
         v-model="value"
         :options="optionsValue"
@@ -53,7 +33,7 @@ export default {
         :searchable="true"
       />
       <input type="hidden" v-bind="field" />
-    </Field>
+    </template>
     <template v-if="$slots.label" #label>
       <slot name="label"></slot>
     </template>
