@@ -1,10 +1,23 @@
 {
-  "name": "vite-vue-template",
+  "name": "fab-components",
   "private": true,
   "version": "0.0.0",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/fab-components.umd.js",
+  "module": "./dist/fab-components.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/fab-components.es.js",
+      "require": "./dist/fab-components.umd.js"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
+  "types": "./dist/index.d.ts",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "vue-tsc --noEmit && vite build && vue-tsc --emitDeclarationOnly",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -25,6 +38,7 @@
     "@tailwindcss/line-clamp": "^0.4.0",
     "@tailwindcss/typography": "^0.5.2",
     "@types/lodash": "^4.14.182",
+    "@types/node": "^18.0.0",
     "@vitejs/plugin-vue": "^2.3.3",
     "@vue/compiler-sfc": "^3.2.37",
     "autoprefixer": "^10.4.7",

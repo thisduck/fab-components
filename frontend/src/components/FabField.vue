@@ -29,9 +29,7 @@ export default {
   <div class="mb-4">
     <FabLabel v-if="props.label !== 'false' && !labelAfter" :for="name" @click="onLabelClick">
       <slot v-if="$slots.label" name="label"></slot>
-      <span v-else>
-        {{ labelValue }}
-      </span>
+      <span v-else>{{ labelValue }}</span>
     </FabLabel>
     <div :class="inputWrapperClasses">
       <Field
