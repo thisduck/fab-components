@@ -23,6 +23,7 @@
   "dependencies": {
     "@types/yup": "^0.29.14",
     "@vueform/multiselect": "^2.4.2",
+    "@vueform/slider": "^2.0.10",
     "@vueform/toggle": "^2.0.2",
     "@vueuse/core": "^8.6.0",
     "lodash": "^4.17.21",

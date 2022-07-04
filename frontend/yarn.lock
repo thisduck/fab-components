@@ -290,6 +290,11 @@
   resolved "https://registry.yarnpkg.com/@vueform/multiselect/-/multiselect-2.4.2.tgz#580a7f84f1eb8c5b2c9d4ac26c54c57f748b815b"
   integrity sha512-5VVk4Mwn4cva+MbBjAXaEunmGWLAp98PcI4okaT95qYCfBckn2N/9ws18O0OStVe8WskFFUj/kF0goH/Xc2aTw==
 
+"@vueform/slider@^2.0.10":
+  version "2.0.10"
+  resolved "https://registry.yarnpkg.com/@vueform/slider/-/slider-2.0.10.tgz#f72358c8528cac000dc739d5d9355bce37ce9537"
+  integrity sha512-FRFKEdICDWWrK7P+rzQiqryFlAnDgy+ZYha9zaFg8Z/9dsSby5DAF4TaaqnUxezkAT22j7O0Ho7Eft+oaViieA==
+
 "@vueform/toggle@^2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@vueform/toggle/-/toggle-2.0.2.tgz#a44563739704bbd22ae96def3f04bc4465a409b0"

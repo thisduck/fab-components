@@ -30,7 +30,24 @@ const schema = object({
 
 <template>
   <div class="mt-12 text-slate-800">
-    <FabForm class="p-4 w-1/3" @submit="handleSubmit" :validation-schema="schema">
+    <FabForm
+      class="p-4 w-1/3"
+      @submit="handleSubmit"
+      :validation-schema="schema"
+      :initial-values="{
+        firstName: 'Person',
+        location: 'Teeheehee',
+        oldColor: 'green',
+        color: 'red',
+        colors: ['red', 'green'],
+        termsOfAgreement: true,
+        light: true,
+        width: 30,
+        blogpost: 'I ate eggs.',
+        companies: [{ setting: { companyName: 'name@inc.com' }, location: 'LalaLand' }],
+        hidden: 'hiddenValue',
+      }"
+    >
       <FabInput :name="`firstName`" help="Your first name" />
 
       <div class="mb-4">
@@ -63,7 +80,7 @@ const schema = object({
         <FabMultiSelect :name="`colors`" :options="['orange', 'green', 'red']" mode="tags" />
       </div>
       <div class="mb-4">
-        <FabCheckbox :name="`termsOfAgreement`" type="checkbox" :value="true">
+        <FabCheckbox :name="`termsOfAgreement`" :value="true">
           <template #label>
             Please
             <em>carefully</em>
@@ -75,8 +92,12 @@ const schema = object({
         <FabToggle :name="`light`" :value="true"></FabToggle>
       </div>
       <div class="mb-4">
+        <FabSlider :name="`width`" :value="30"></FabSlider>
+      </div>
+      <div class="mb-4">
         <FabTextarea :name="`blogpost`" />
       </div>
+      <FabHidden :name="`hidden`" />
       <FieldArray v-slot="{ fields, push, remove }" name="companies">
         <div v-for="(field, index) of fields" :key="field.key" class="mb-4">
           <FabInput
