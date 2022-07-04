@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { inject, defineProps, computed, Ref, ref, watch } from 'vue';
+import { inject, computed, Ref, ref, watch } from 'vue';
 
 const props = defineProps<{
   type?: 'submit' | 'button' | 'reset';
