@@ -74,6 +74,9 @@ const schema = object({
       <div class="mb-4">
         <FabToggle :name="`light`" :value="true"></FabToggle>
       </div>
+      <div class="mb-4">
+        <FabTextarea :name="`blogpost`" />
+      </div>
       <FieldArray v-slot="{ fields, push, remove }" name="companies">
         <div v-for="(field, index) of fields" :key="field.key" class="mb-4">
           <FabInput
