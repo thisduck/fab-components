@@ -80,7 +80,7 @@ const schema = object({
         <FabMultiSelect :name="`colors`" :options="['orange', 'green', 'red']" mode="tags" />
       </div>
       <div class="mb-4">
-        <FabCheckbox :name="`termsOfAgreement`" :value="true">
+        <FabCheckbox :name="`termsOfAgreement`">
           <template #label>
             Please
             <em>carefully</em>

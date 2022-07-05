@@ -5,14 +5,22 @@ import startCase from 'lodash/startCase';
 
 const props = defineProps<{
   name: string;
+  type?: string;
   label?: string;
   help?: string;
   labelAfter?: boolean;
   inputWrapperClasses?: string;
   onLabelClick?: () => void;
+  checkedValue?: unknown;
+  uncheckedValue?: unknown;
 }>();
 
-const fieldParams = useField(props.name);
+const fieldParams = useField(props.name, undefined, {
+  type: props.type,
+  checkedValue: props.checkedValue ?? true,
+  valueProp: props.checkedValue ?? false,
+  uncheckedValue: props.uncheckedValue ?? false,
+});
 
 const labelValue = computed(() => {
   return props.label ?? startCase(props.name.split('.').reverse()[0]);
