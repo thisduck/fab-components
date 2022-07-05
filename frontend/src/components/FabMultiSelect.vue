@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { computed } from 'vue';
 import Multiselect from '@vueform/multiselect';
 
 const props = defineProps<{
   options: Record<string, string> | string[];
   mode?: 'single' | 'multiple' | 'tags';
 }>();
-
-const value = ref();
 
 const optionsValue = computed(() => {
   if (Array.isArray(props.options)) {
@@ -23,16 +21,23 @@ const optionsValue = computed(() => {
 </script>
 
 <template>
-  <FabField class="h-5 w-5 rounded-md border border-gray-600 mt-px" v-model="value">
+  <FabField class="h-5 w-5 rounded-md border border-gray-600 mt-px">
     <template #default="{ field }">
       <Multiselect
-        v-model="value"
+        v-model="field.value.value"
         :options="optionsValue"
         :mode="mode || 'single'"
         :hideSelected="mode === 'tags'"
         :searchable="true"
       />
-      <input type="hidden" v-bind="field" />
+      <input
+        type="hidden"
+        :name="field.name"
+        :id="field.name"
+        v-model="field.value.value"
+        @input="field.handleChange"
+        @blur="field.handleBlur"
+      />
     </template>
     <template v-if="$slots.label" #label>
       <slot name="label"></slot>

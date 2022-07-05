@@ -38,7 +38,7 @@ const schema = object({
         firstName: 'Person',
         location: 'Teeheehee',
         oldColor: 'green',
-        color: 'red',
+        color: ['red'],
         colors: ['red', 'green'],
         termsOfAgreement: true,
         light: true,
