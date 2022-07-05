@@ -89,7 +89,7 @@ const schema = object({
         </FabCheckbox>
       </div>
       <div class="mb-4">
-        <FabToggle :name="`light`" :value="true"></FabToggle>
+        <FabToggle :name="`light`"></FabToggle>
       </div>
       <div class="mb-4">
         <FabSlider :name="`width`" :value="30"></FabSlider>
