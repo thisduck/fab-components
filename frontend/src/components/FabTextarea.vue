@@ -13,7 +13,7 @@ defineProps<{
         :name="field.name"
         :id="field.name"
         v-model="field.value.value"
-        @input="field.handleChange"
+        @input="field.handleChange($event.target?.value, false)"
         @blur="field.handleBlur"
         :placeholder="placeholder"
         :type="type || 'text'"

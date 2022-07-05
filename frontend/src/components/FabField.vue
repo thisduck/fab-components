@@ -20,6 +20,7 @@ const fieldParams = useField(props.name, undefined, {
   checkedValue: props.checkedValue ?? true,
   valueProp: props.checkedValue ?? false,
   uncheckedValue: props.uncheckedValue ?? false,
+  validateOnValueUpdate: false,
 });
 
 const labelValue = computed(() => {
