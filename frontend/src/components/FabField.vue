@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ErrorMessage, Field } from 'vee-validate';
-import { computed, useAttrs } from 'vue';
+import { ErrorMessage, useField } from 'vee-validate';
+import { computed } from 'vue';
 import startCase from 'lodash/startCase';
 
 const props = defineProps<{
@@ -12,11 +12,11 @@ const props = defineProps<{
   onLabelClick?: () => void;
 }>();
 
+const fieldParams = useField(props.name);
+
 const labelValue = computed(() => {
   return props.label ?? startCase(props.name.split('.').reverse()[0]);
 });
-
-const attrs = useAttrs();
 </script>
 
 <script lang="ts">
@@ -32,17 +32,7 @@ export default {
       <span v-else>{{ labelValue }}</span>
     </FabLabel>
     <div :class="inputWrapperClasses">
-      <Field
-        :id="name"
-        :name="name"
-        :validateOnBlur="false"
-        :validateOnChange="false"
-        v-bind="attrs"
-      >
-        <template v-if="$slots.default" #default="fieldParams">
-          <slot name="default" v-bind="fieldParams"></slot>
-        </template>
-      </Field>
+      <slot name="default" v-bind="{ field: fieldParams }"></slot>
       <FabLabel v-if="props.label !== 'false' && labelAfter" :for="name" @click="onLabelClick">
         <slot v-if="$slots.label" name="label"></slot>
         <span v-else>
