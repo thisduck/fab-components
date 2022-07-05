@@ -7,13 +7,19 @@ defineProps<{
 </script>
 
 <template>
-  <FabField
-    :name="name"
-    :placeholder="placeholder"
-    :type="type || 'text'"
-    as="textarea"
-    class="py-2 px-3 rounded-md border border-gray-600 w-full"
-  >
+  <FabField :name="name">
+    <template #default="{ field }">
+      <textarea
+        :name="field.name"
+        :id="field.name"
+        v-model="field.value.value"
+        @input="field.handleChange"
+        @blur="field.handleBlur"
+        :placeholder="placeholder"
+        :type="type || 'text'"
+        class="py-2 px-3 rounded-md border border-gray-600 w-full"
+      />
+    </template>
     <template v-if="$slots.label" #label>
       <slot name="label"></slot>
     </template>
