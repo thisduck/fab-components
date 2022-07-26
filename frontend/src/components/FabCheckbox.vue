@@ -23,7 +23,9 @@ defineProps<{
         class="mt-px w-5 h-5 rounded-md border border-gray-600"
         :checked="field.value.value === field.checkedValue"
         @input="
-          field.value.value = $event.target?.checked ? field.checkedValue : field.uncheckedValue
+          field.value.value = ($event.target as HTMLInputElement)?.checked
+            ? field.checkedValue
+            : field.uncheckedValue
         "
         @blur="field.handleBlur"
       />

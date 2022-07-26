@@ -31,7 +31,9 @@ defineProps<{
         class="hidden"
         :checked="field.value.value === field.checkedValue"
         @input="
-          field.value.value = $event.target?.checked ? field.checkedValue : field.uncheckedValue
+          field.value.value = ($event.target as HTMLInputElement | null)?.checked
+            ? field.checkedValue
+            : field.uncheckedValue
         "
         @blur="field.handleBlur"
       />

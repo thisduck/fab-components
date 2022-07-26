@@ -7,8 +7,8 @@ const attrs = useAttrs();
 
 const { onSubmit, ...restOfAttrs } = attrs;
 
-const submitTask = useTask(function* (_signal, values: any) {
-  yield (onSubmit as (values: any) => void)(values);
+const submitTask = useTask(function* (_signal, ...args) {
+  yield (onSubmit as any)(...args);
 }).drop();
 
 provide('formIsRunning', toRef(submitTask, 'isRunning'));
@@ -21,7 +21,7 @@ export default {
 </script>
 
 <template>
-  <Form v-bind="restOfAttrs" @submit="values => submitTask.perform(values)" v-slot="formParams">
+  <Form v-slot="formParams" v-bind="restOfAttrs" @submit="(...args) => submitTask.perform(...args)">
     <slot v-bind="formParams" :task="submitTask"></slot>
   </Form>
 </template>
