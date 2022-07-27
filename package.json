@@ -1,7 +1,6 @@
 {
-  "name": "fab-components",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@thisduck/fab-components",
+  "version": "0.0.1",
   "files": [
     "dist"
   ],

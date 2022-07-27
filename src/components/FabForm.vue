@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useTask } from 'vue-concurrency';
 import { useAttrs, provide, toRef } from 'vue';
-import { Form } from 'vee-validate';
+import { Form, SubmissionContext } from 'vee-validate';
 import FabModal from './FabModal.vue';
 
 const attrs = useAttrs();
@@ -16,12 +16,14 @@ const submitTask = useTask(function* (_signal, ...args) {
   yield (onSubmit as any)(...args);
 }).drop();
 
-async function submitWrapper(...args) {
+type Values = Record<string, unknown>;
+
+async function submitWrapper(values: Values, ctx: SubmissionContext<Values>) {
   if (props.confirmationModalRef) {
     const confirmation = await props.confirmationModalRef.show<boolean>();
     if (!confirmation) return;
   }
-  submitTask.perform(...args);
+  submitTask.perform(values, ctx);
 }
 
 provide('formIsRunning', toRef(submitTask, 'isRunning'));
@@ -34,7 +36,11 @@ export default {
 </script>
 
 <template>
-  <Form v-slot="formParams" v-bind="restOfAttrs" @submit="(...args) => submitWrapper(...args)">
+  <Form
+    v-slot="formParams"
+    v-bind="restOfAttrs"
+    @submit="(values, context) => submitWrapper(values, context)"
+  >
     <slot v-bind="formParams" :task="submitTask"></slot>
   </Form>
 </template>
