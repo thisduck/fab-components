@@ -1,18 +1,22 @@
 <script setup lang="ts">
 // Taken and modified from headless ui.
-import { ref, defineEmits } from 'vue';
+import { ref } from 'vue';
 import { TransitionRoot, TransitionChild, Dialog, DialogPanel, DialogTitle } from '@headlessui/vue';
 
 const isOpen = ref(false);
-const emit = defineEmits(['close']);
 
-function close() {
+let modalResolve: (value: unknown) => void;
+
+function close(value: unknown) {
   isOpen.value = false;
-  emit('close');
+  modalResolve(value);
 }
 
-function show() {
+function show<T>() {
   isOpen.value = true;
+  return new Promise<T>(resolve => {
+    modalResolve = resolve as typeof modalResolve;
+  });
 }
 
 defineExpose({

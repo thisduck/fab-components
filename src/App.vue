@@ -32,32 +32,24 @@ const schema = object({
 </script>
 
 <template>
-  <div class="p-4">
-    <FabButton v-if="modalRef" size="xs" type="button" @click="modalRef.show">Open Modal</FabButton>
-    <FabModal ref="modalRef">
-      <template #title>Payment successful</template>
-      <template #default>
-        <div class="mt-2">
-          <p class="text-sm text-gray-500">
-            Your payment has been successfully submitted. We’ve sent you an email with all of the
-            details of your order.
-          </p>
-        </div>
+  <FabModal ref="modalRef">
+    <template #title>Are you sure?</template>
+    <template #default>
+      <div class="mt-2">
+        <p class="text-sm text-gray-500">
+          Are you sure you wanna submit? Check it before you mess it up.
+        </p>
+      </div>
 
-        <div class="mt-4">
-          <button
-            type="button"
-            class="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-            @click="modalRef.close"
-          >
-            Got it, thanks!
-          </button>
-        </div>
-      </template>
-    </FabModal>
-  </div>
+      <div class="flex justify-between mt-4">
+        <FabButton type="button" variant="outline" @click="modalRef.close(false)">Cancel</FabButton>
+        <FabButton type="button" @click="modalRef.close(true)">Yeah, I'm sure.</FabButton>
+      </div>
+    </template>
+  </FabModal>
   <div class="mt-12 text-slate-800">
     <FabForm
+      :confirmationModalRef="modalRef"
       class="p-4 w-1/3"
       @submit="handleSubmit"
       :validation-schema="schema"

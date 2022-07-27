@@ -9,7 +9,7 @@ const props = defineProps<{
   variant?: 'default' | 'outline' | 'plain';
 }>();
 
-const formIsRunning: Ref<boolean> | undefined = inject('formIsRunning');
+const formIsRunning: Ref<boolean> | undefined = inject('formIsRunning', ref(false));
 
 const disabledValue = computed(() => {
   return props.disabled || isRunning.value;
