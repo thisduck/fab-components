@@ -35,7 +35,27 @@ const schema = object({
   <div class="p-4">
     <FabButton size="xs" type="button" @click="showModal = true">Open Modal</FabButton>
     <pre>{{ showModal }}</pre>
-    <FabModal :show="showModal" @close="showModal = false" />
+    <FabModal :show="showModal" @close="showModal = false">
+      <template #title>Payment successful</template>
+      <template #default>
+        <div class="mt-2">
+          <p class="text-sm text-gray-500">
+            Your payment has been successfully submitted. We’ve sent you an email with all of the
+            details of your order.
+          </p>
+        </div>
+
+        <div class="mt-4">
+          <button
+            type="button"
+            class="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+            @click="showModal = false"
+          >
+            Got it, thanks!
+          </button>
+        </div>
+      </template>
+    </FabModal>
   </div>
   <div class="mt-12 text-slate-800">
     <FabForm
