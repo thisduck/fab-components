@@ -12,6 +12,7 @@ declare module '@vue/runtime-core' {
     FabHidden: typeof import('./src/components/FabHidden.vue')['default']
     FabInput: typeof import('./src/components/FabInput.vue')['default']
     FabLabel: typeof import('./src/components/FabLabel.vue')['default']
+    FabModal: typeof import('./src/components/FabModal.vue')['default']
     FabMultiSelect: typeof import('./src/components/FabMultiSelect.vue')['default']
     FabSelect: typeof import('./src/components/FabSelect.vue')['default']
     FabSlider: typeof import('./src/components/FabSlider.vue')['default']

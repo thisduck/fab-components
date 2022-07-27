@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import { FieldArray } from 'vee-validate';
 import { string, object, array, boolean } from 'yup';
+
+const showModal = ref(false);
 
 async function handleSubmit(values: any) {
   console.log(values);
@@ -29,6 +32,11 @@ const schema = object({
 </script>
 
 <template>
+  <div class="p-4">
+    <FabButton size="xs" type="button" @click="showModal = true">Open Modal</FabButton>
+    <pre>{{ showModal }}</pre>
+    <FabModal :show="showModal" @close="showModal = false" />
+  </div>
   <div class="mt-12 text-slate-800">
     <FabForm
       class="p-4 w-1/3"
