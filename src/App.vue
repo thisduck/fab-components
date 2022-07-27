@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import { FieldArray } from 'vee-validate';
 import { string, object, array, boolean } from 'yup';
 
-const showModal = ref(false);
+const modalRef = ref();
 
 async function handleSubmit(values: any) {
   console.log(values);
@@ -33,9 +33,8 @@ const schema = object({
 
 <template>
   <div class="p-4">
-    <FabButton size="xs" type="button" @click="showModal = true">Open Modal</FabButton>
-    <pre>{{ showModal }}</pre>
-    <FabModal :show="showModal" @close="showModal = false">
+    <FabButton v-if="modalRef" size="xs" type="button" @click="modalRef.show">Open Modal</FabButton>
+    <FabModal ref="modalRef">
       <template #title>Payment successful</template>
       <template #default>
         <div class="mt-2">
@@ -49,7 +48,7 @@ const schema = object({
           <button
             type="button"
             class="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-            @click="showModal = false"
+            @click="modalRef.close"
           >
             Got it, thanks!
           </button>

@@ -1,18 +1,29 @@
 <script setup lang="ts">
 // Taken and modified from headless ui.
-import { defineEmits } from 'vue';
+import { ref, defineEmits } from 'vue';
 import { TransitionRoot, TransitionChild, Dialog, DialogPanel, DialogTitle } from '@headlessui/vue';
 
+const isOpen = ref(false);
 const emit = defineEmits(['close']);
 
-function closeModal() {
+function close() {
+  isOpen.value = false;
   emit('close');
 }
+
+function show() {
+  isOpen.value = true;
+}
+
+defineExpose({
+  show,
+  close,
+});
 </script>
 
 <template>
-  <TransitionRoot appear as="template">
-    <Dialog as="div" @close="closeModal" class="relative z-10">
+  <TransitionRoot appear :show="isOpen" as="template">
+    <Dialog as="div" @close="close" class="relative z-10">
       <TransitionChild
         as="template"
         enter="duration-300 ease-out"
